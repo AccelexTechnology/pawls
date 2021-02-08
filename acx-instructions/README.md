@@ -2,12 +2,12 @@
 
 1. Update `../api/config/configuration.json` to reflect the pdf labels you would like to collect.
 
-2. Place the data you are planning to label in the `output_directory` defined in the configuration.
+2. Place the data you are planning to label in the `output_directory` defined in the configuration. The files must be in a nested format as described in the [main repo README](../README.md) so it might be necessary to use the script `./scripts/files_to_nested.sh`.
 
 3. Preprocess the data (PAWLS cli must be installed), by running:
 
     ```bash
-    pawls preprocess grobid <output_directory>
+    pawls preprocess pdfplumber <output_directory>
     ```
 
 4. TODO: generate `$SHA_FILE` and `$NAME_FILE`.
