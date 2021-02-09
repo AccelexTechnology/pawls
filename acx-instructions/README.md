@@ -10,15 +10,15 @@
     pawls preprocess pdfplumber <output_directory>
     ```
 
-4. Generate `$SHA_FILE` and `$NAME_FILE` using the script `./scripts/gen_shas.sh`. Ensure you only run this script once.
+4. Generate `$SHA_FILE` and `$NAME_FILE` using the script `./scripts/gen_shas.sh output_directory`. Ensure you only run this script once. This will gen files in the passed `output_directory`
 
 5. Assign them to a user (locally this must be `development_user@example.com`) like:
 
     ```bash
-    pawls assign <output_directory> development_user@example.com \
+    pawls assign $OUT_DIR development_user@example.com \
         --all \
-        --sha-file $SHA_FILE
-        --name-file $NAME_FILE
+        --sha-file "$OUT_DIR/sha.txt" \
+        --name-file "$OUT_DIR/names.json"
     ```
 
 6. Run the app with `docker-compose up --build` from the root directory and annotate the documents.
