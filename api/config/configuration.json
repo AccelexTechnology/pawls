@@ -1,5 +1,5 @@
 {
-    "output_directory": "/skiff_files/static_metrics/",
+    "output_directory": "/skiff_files/apps/pawls/papers",
     "labels": [
         {
             "text": "asset_name",
@@ -8,6 +8,10 @@
         {
             "text": "asset_area",
             "color": "#B8DE6F"
+        },
+        {
+            "text": "skip_page",
+            "color": "#2F85F7"
         },
         {
             "text": "sector_label",
