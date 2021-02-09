@@ -10,6 +10,15 @@
     pawls preprocess pdfplumber <output_directory>
     ```
 
+    Note that there are a few bugs in `pdfplumber` that you may need to fix including:
+
+    - `KeyError: "None of [Index(['x0', 'x1'], dtype='object')] are in the [columns]"`. This is caused by the dataframe in the above code being empty. To fix add the following to the library source code after the `df` is created:
+
+    ```python
+    if df.empty:
+        return []
+    ```
+
 4. Generate `$SHA_FILE` and `$NAME_FILE` using the script `./scripts/gen_shas.sh output_directory`. Ensure you only run this script once. This will gen files in the passed `output_directory`
 
 5. Assign them to a user (locally this must be `development_user@example.com`) like:
