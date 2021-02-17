@@ -2,6 +2,7 @@ import json
 from typing import List, Dict, Iterable
 from glob import glob
 import os
+from pathlib import Path
 import uuid
 
 import click
@@ -35,7 +36,11 @@ def get_pdf_pages_and_sizes(filename: str):
 
 
 def get_pdf_sha(pdf_file_name: str) -> str:
-    return os.path.basename(pdf_file_name).replace(".pdf", "")
+    name = os.path.basename(pdf_file_name)
+    # remove .pdf suffix
+    if name[-4:] == '.pdf':
+        name = name[:-4]
+    return name
 
 
 class LabelingConfiguration:
@@ -70,7 +75,9 @@ class AnnotationFolder:
         self.path = path
         self.pdf_structure_name = pdf_structure_name or self.DEFAULT_PDF_STRUCTURE_NAME
         
-        self.all_pdf_paths = [pdf_path for pdf_path in glob(f"{self.path}/*/*.pdf")]
+        self.all_pdf_paths = [
+            pdf_path for pdf_path in glob(f"{self.path}/*/*.pdf") if not Path(pdf_path).is_dir()
+        ]
         self.all_pdfs = [os.path.basename(pdf_path) for pdf_path in self.all_pdf_paths]
         
     @property

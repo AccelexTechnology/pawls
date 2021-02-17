@@ -175,6 +175,8 @@ class COCOBuilder:
                     continue
 
                 image_data = self.get_image_data(paper_sha, page_id)
+                if not image_data:
+                    continue
                 width, height = image_data["width"], image_data["height"]
 
                 x, y, w, h = _convert_bounds_to_coco_bbox(anno["bounds"])
